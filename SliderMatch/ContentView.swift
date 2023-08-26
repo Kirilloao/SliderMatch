@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var currentValue: Float = 50.0
     @State private var showAlert = false
     @State private var alphaValue = 1.0
-
+    @EnvironmentObject private var targetValueStore: TargetValueStore
     
     var body: some View {
         VStack {
@@ -28,18 +28,20 @@ struct ContentView: View {
                 .alert(isPresented: $showAlert) {
                     Alert(
                         title: Text("Результат"),
-                        message: Text("Вы набрали \(calculatedScore()) очков")
+                        message: Text("Вы набрали \(computeScore()) очков")
                     )
                 }
                 Button("Начать заново") {
-                    targetValue = Int.random(in: 1...100)
+                    targetValueStore.targetValue = Int.random(in: 1...100)
+                    targetValue = targetValueStore.targetValue
+                    
                 }
             }
         }
     }
     
-    private func calculatedScore() -> Int {
-        let difference = abs(targetValue - lround(Double(currentValue)))
+    private func computeScore() -> Int {
+        let difference = abs(targetValueStore.targetValue - lround(Double(currentValue)))
         return 100 - difference
     }
 }
@@ -47,5 +49,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(TargetValueStore())
     }
 }

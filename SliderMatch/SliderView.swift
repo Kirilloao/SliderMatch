@@ -15,7 +15,11 @@ struct SliderView: View {
     var body: some View {
         HStack {
             Text("0")
-            CustomSlider(value: $value, alphaValue: $alphaValue, targetValueStore: targetValueStore)
+            CustomSlider(
+                value: $value,
+                alphaValue: $alphaValue,
+                targetValueStore: targetValueStore
+            )
             Text("100")
         }
         .padding()

@@ -34,7 +34,11 @@ struct CustomSlider: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(value: $value, alphaValue: $alphaValue, targetValueStore: _targetValueStore)
+        Coordinator(
+            value: $value,
+            alphaValue: $alphaValue,
+            targetValueStore: _targetValueStore
+        )
     }
 }
 
@@ -55,8 +59,6 @@ extension CustomSlider {
             let difference = abs(targetValueStore.targetValue - Int(sender.value))
             let maxDifference = Float(sender.maximumValue)
             alphaValue = Double(max(1.0 - (Float(difference) / maxDifference), 0.0))
-            
-            
         }
     }
 }
@@ -64,8 +66,12 @@ extension CustomSlider {
 struct CustomSlider_Previews: PreviewProvider {
     static var previews: some View {
         let targetValueStore = TargetValueStore()
-        CustomSlider(value: .constant(50.0), alphaValue: .constant(40), targetValueStore: targetValueStore)
-            .environmentObject(targetValueStore)
+        CustomSlider(
+            value: .constant(50.0),
+            alphaValue: .constant(40),
+            targetValueStore: targetValueStore
+        )
+        .environmentObject(targetValueStore)
     }
 }
 

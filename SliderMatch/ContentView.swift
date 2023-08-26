@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var targetValue = Int.random(in: 1...100)
-    @State private var currentValue: Float = 50.0
+    @State private var currentValue = Float.random(in: 1...100)
     @State private var showAlert = false
     @State private var alphaValue = 1.0
     @EnvironmentObject private var targetValueStore: TargetValueStore

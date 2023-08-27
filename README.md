@@ -6,4 +6,5 @@
 
 3. **SwiftUI(with UISlider from UIKit)**
    
-![ezgif com-video-to-gif](https://github.com/Kirilloao/SliderMatch/assets/106522858/8b16c439-e4f3-428f-80a6-3549c4327f89)
+![ezgif com-video-to-gif](https://github.com/Kirilloao/SliderMatch/assets/106522858/0e93c28d-5880-40d3-8151-debe0bd6ccdd)
+

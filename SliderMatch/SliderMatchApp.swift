@@ -12,7 +12,6 @@ struct SliderMatchApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(TargetValueStore())
         }
     }
 }

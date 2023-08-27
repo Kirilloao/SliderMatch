@@ -8,40 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var targetValue = Int.random(in: 1...100)
-    @State private var currentValue = Float.random(in: 1...100)
+    
+    @State private var targetValue = Int.random(in: 0...100)
+    @State private var currentValue = Double.random(in: 0...100)
     @State private var showAlert = false
-    @State private var alphaValue = 1.0
-    @EnvironmentObject private var targetValueStore: TargetValueStore
     
     var body: some View {
         VStack {
-            Text("Подвиньте слайдер, как можно ближе к: \(targetValue)")
-            SliderView(value: $currentValue,
-                       alphaValue: $alphaValue
+            SliderView(
+                currentValue: $currentValue,
+                targetValue: targetValue,
+                color: .red,
+                alpha: computeScore()
             )
-            VStack {
-                Button("Проверь меня!") {
-                    showAlert = true
-                }
-                .padding()
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("Результат"),
-                        message: Text("Вы набрали \(computeScore()) очков")
-                    )
-                }
-                Button("Начать заново") {
-                    targetValueStore.targetValue = Int.random(in: 1...100)
-                    targetValue = targetValueStore.targetValue
-                    
-                }
+            Button("Проверь меня!") {
+                showAlert.toggle()
+            }
+            .padding()
+            .alert("Your Score", isPresented: $showAlert, actions: {}) {
+                Text(computeScore().formatted())
+            }
+            
+            Button("Начать заново") {
+                targetValue = Int.random(in: 1...100)
+                currentValue = Double.random(in: 0...100)
             }
         }
     }
     
     private func computeScore() -> Int {
-        let difference = abs(targetValueStore.targetValue - lround(Double(currentValue)))
+        let difference = abs(targetValue - lround(currentValue))
         return 100 - difference
     }
 }
@@ -49,6 +45,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(TargetValueStore())
     }
 }

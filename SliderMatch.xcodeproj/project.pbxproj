@@ -13,7 +13,6 @@
 		3C70CC042A992A4100192625 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C70CC032A992A4100192625 /* Preview Assets.xcassets */; };
 		3C70CC0B2A992BD000192625 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C70CC0A2A992BD000192625 /* CustomSlider.swift */; };
 		3C70CC0D2A9930D100192625 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C70CC0C2A9930D100192625 /* SliderView.swift */; };
-		3C70CC142A9A2AE900192625 /* TargetValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C70CC132A9A2AE900192625 /* TargetValueStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +23,6 @@
 		3C70CC032A992A4100192625 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3C70CC0A2A992BD000192625 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		3C70CC0C2A9930D100192625 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
-		3C70CC132A9A2AE900192625 /* TargetValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetValueStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +59,6 @@
 				3C70CBFE2A992A4000192625 /* ContentView.swift */,
 				3C70CC0C2A9930D100192625 /* SliderView.swift */,
 				3C70CC0A2A992BD000192625 /* CustomSlider.swift */,
-				3C70CC132A9A2AE900192625 /* TargetValueStore.swift */,
 				3C70CC002A992A4100192625 /* Assets.xcassets */,
 				3C70CC022A992A4100192625 /* Preview Content */,
 			);
@@ -148,7 +145,6 @@
 			files = (
 				3C70CBFF2A992A4000192625 /* ContentView.swift in Sources */,
 				3C70CC0D2A9930D100192625 /* SliderView.swift in Sources */,
-				3C70CC142A9A2AE900192625 /* TargetValueStore.swift in Sources */,
 				3C70CC0B2A992BD000192625 /* CustomSlider.swift in Sources */,
 				3C70CBFD2A992A4000192625 /* SliderMatchApp.swift in Sources */,
 			);

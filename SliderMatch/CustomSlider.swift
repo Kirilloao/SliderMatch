@@ -11,67 +11,54 @@ import SwiftUI
 
 struct CustomSlider: UIViewRepresentable {
     
-    @Binding var value: Float
-    @Binding var alphaValue: Double
-    @ObservedObject var targetValueStore: TargetValueStore
+    @Binding var value: Double
+    
+    var alpha: Int
+    var color: UIColor
     
     func makeUIView(context: Context) -> UISlider {
         let slider = UISlider()
+        slider.value = Float(value)
         slider.minimumValue = 0
         slider.maximumValue = 100
-        slider.thumbTintColor = .systemRed.withAlphaComponent(alphaValue)
+        
         slider.addTarget(
             context.coordinator,
-            action: #selector(Coordinator.sliderDidChangeValue),
+            action: #selector(Coordinator.valueChanged),
             for: .valueChanged
         )
+        
         return slider
     }
     
-    func updateUIView(_ uiView: UISlider, context: Context) {
-        uiView.value = value
-        uiView.thumbTintColor = .systemRed.withAlphaComponent(alphaValue)
+    func updateUIView(_ view: UISlider, context: Context) {
+        view.value = Float(value)
+        view.thumbTintColor = color.withAlphaComponent(CGFloat(alpha) / 100)
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(
-            value: $value,
-            alphaValue: $alphaValue,
-            targetValueStore: _targetValueStore
-        )
+        Coordinator(value: $value)
     }
 }
 
 extension CustomSlider {
     class Coordinator: NSObject {
-        @Binding var value: Float
-        @Binding var alphaValue: Double
-        @ObservedObject var targetValueStore: TargetValueStore
         
-        init(value: Binding<Float>, alphaValue: Binding<Double>, targetValueStore: ObservedObject<TargetValueStore>) {
+        @Binding var value: Double
+        
+        init(value: Binding<Double>) {
             self._value = value
-            self._alphaValue = alphaValue
-            self._targetValueStore = targetValueStore
         }
         
-        @objc func sliderDidChangeValue(_ sender: UISlider) {
-            value = sender.value
-            let difference = abs(targetValueStore.targetValue - Int(sender.value))
-            let maxDifference = Float(sender.maximumValue)
-            alphaValue = Double(max(1.0 - (Float(difference) / maxDifference), 0.0))
+        @objc func valueChanged(_ sender: UISlider) {
+            value = Double(sender.value)
         }
     }
 }
 
 struct CustomSlider_Previews: PreviewProvider {
     static var previews: some View {
-        let targetValueStore = TargetValueStore()
-        CustomSlider(
-            value: .constant(50.0),
-            alphaValue: .constant(40),
-            targetValueStore: targetValueStore
-        )
-        .environmentObject(targetValueStore)
+        CustomSlider(value: .constant(50), alpha: 100, color: .blue)
     }
 }
 
